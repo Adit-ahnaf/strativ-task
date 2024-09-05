@@ -205,8 +205,8 @@ export const AddQuizForm = ({ submitForm, editObj }) => {
             </p>
 
             {/* Option A */}
-            {quizOptions.map((quiz) => (
-              <QuizOption quiz={quiz} form={form} isSubmitting={isSubmitting} />
+            {quizOptions.map((quiz, index) => (
+              <QuizOption key={index} quiz={quiz} form={form} isSubmitting={isSubmitting} />
             ))}
 
             <div className="flex items-center justify-end gap-x-2">

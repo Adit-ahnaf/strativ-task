@@ -13,17 +13,20 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-export default function () {
+
+const LoginComponent = () => {
   const route = useRouter();
   const [userInfo, setuserInfo] = useState({
     email: "",
     password: "",
   });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await ceredntialLogin(userInfo);
       if (!!response.error) {
+        toast.error("Authorization Failed, Please Check Credential !!");
       } else {
         toast.success("Logged In Successfully");
         route.push("/quiz");
@@ -42,11 +45,11 @@ export default function () {
       [fieldName]: value,
     });
   };
+
   return (
-    <Card className="mx-auto  mt-[80px] sm:mt-[200px] max-w-sm w-full">
+    <Card className="mx-auto mt-[80px] sm:mt-[200px] max-w-sm w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
-
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
@@ -85,4 +88,6 @@ export default function () {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default LoginComponent;
